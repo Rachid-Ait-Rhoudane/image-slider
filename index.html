@@ -6,24 +6,45 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <title>Image slider</title>
 </head>
 <body>
 
     <div class="slider-wrapper">
-        <div id="slide-number" class="slide-number">Slide #6</div>
-        <img src="./images/image-01.jpg" alt="slider image">
-        <img src="./images/image-02.jpg" alt="slider image">
-        <img src="./images/image-03.jpg" alt="slider image">
-        <img src="./images/image-04.jpg" alt="slider image">
-        <img src="./images/images-05.jpg" alt="slider image">
+        <div id="slider-number" class="slider-number">Slide #6</div>
+        <div class="slider-images">
+            <img src="./images/image-01.jpg" alt="slider image">
+            <img src="./images/image-02.jpg" alt="slider image">
+            <img src="./images/image-03.jpg" alt="slider image">
+            <img src="./images/image-04.jpg" alt="slider image">
+            <img src="./images/images-05.jpg" alt="slider image">
+        </div>
+        <div class="slider-controls">
+            <span id="previous" class="previous">
+                <i class="fa-solid fa-angles-left"></i>
+            </span>
+            <span id="next" class="next">
+                <i class="fa-solid fa-angles-right"></i>
+            </span>
+        </div>
     </div>
 
-    <div class="slider-controls">
-        <span id="previous" class="previous">Previous</span>
-        <span id="indicators" class="indicators"></span>
-        <span id="next" class="next">Next</span>
+    <div class="slider-pagination">
+        <span id="previous" class="previous">
+            <i class="fa-solid fa-caret-left"></i>
+        </span>
+        <span id="indicators" class="indicators">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </span>
+        <span id="next" class="next">
+            <i class="fa-solid fa-caret-right"></i>
+        </span>
     </div>
 
     <script src="./js/index.js"></script>
