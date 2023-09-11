@@ -2,21 +2,21 @@ let sliderImages = Array.from(document.querySelectorAll(".slider-wrapper .slider
 
 let numberOfImages = sliderImages.length;
 
-// let indicatorsList = document.createElement("ul");
+let indicatorsList = document.createElement("ul");
 
-// for(let i = 1; i <= numberOfImages; i++) {
-//     let indicator = document.createElement("li");
-//     indicator.id = i;
-//     let indicatorTxt = document.createTextNode(i);
-//     indicator.appendChild(indicatorTxt);
-//     indicatorsList.appendChild(indicator);
-// }
+for(let i = 1; i <= numberOfImages; i++) {
+    let indicator = document.createElement("li");
+    indicator.id = i;
+    let indicatorTxt = document.createTextNode(i);
+    indicator.appendChild(indicatorTxt);
+    indicatorsList.appendChild(indicator);
+}
 
-// document.querySelector(".slider-pagination .indicators").appendChild(indicatorsList);
+document.querySelector(".slider-pagination .indicators").appendChild(indicatorsList);
 
 let currentShownImage = 1;
 
-// indicatorsList.children[currentShownImage-1].classList.add("active");
+indicatorsList.children[currentShownImage-1].classList.add("active");
 
 let currentShownImageIndex = document.querySelector(".slider-wrapper .slider-number");
 
@@ -32,7 +32,7 @@ sliderNextButton.addEventListener("click", function () {
         currentShownImageIndex.innerText = `Slide #${currentShownImage}`;
         imageSliderWrapper.style.left = `-${(currentShownImage-1)*100}%`;
     } 
-    DisableOrActive();
+    sliderButtons();
 });
 
 sliderPreviousButton.addEventListener("click", function () {
@@ -41,18 +41,43 @@ sliderPreviousButton.addEventListener("click", function () {
         currentShownImageIndex.innerText = `Slide #${currentShownImage}`;
         imageSliderWrapper.style.left = `-${(currentShownImage-1)*100}%`;
     }
-    DisableOrActive();
+    sliderButtons();
 } );
 
-// for(let li of indicatorsList.children) {
-//     li.addEventListener("click", function () {
-//         currentShownImage = +li.innerText;
-//         imageSliderWrapper.style.left = `-${(currentShownImage-1)*100}%`;
-//         DisableOrActive();
-//     });
-// }
+for(let li of indicatorsList.children) {
+    li.addEventListener("click", function () {
+        currentShownImage = +li.innerText;
+        currentShownImageIndex.innerText = `Slide #${currentShownImage}`;
+        imageSliderWrapper.style.left = `-${(currentShownImage-1)*100}%`;
+        sliderButtons();
+    });
+}
 
-function DisableOrActive() {
+let paginationPreviousButton = document.querySelector(".slider-pagination .previous");
+
+let paginationNextButton = document.querySelector(".slider-pagination .next");
+
+let numberOfPages = Math.ceil(numberOfImages / 3);
+
+let currentPage = 1;
+
+paginationPreviousButton.addEventListener("click", function () {
+    if (1 < currentPage) {
+        currentPage--;
+        indicatorsList.style.left = `-${(currentPage-1)*100}%`;
+    }
+    paginationButtons();
+});
+
+paginationNextButton.addEventListener("click", function () {
+    if (currentPage < numberOfPages) {
+        currentPage++;
+        indicatorsList.style.left = `-${(currentPage-1)*100}%`;
+    }
+    paginationButtons();
+});
+
+function sliderButtons() {
 
     if(1 <= currentShownImage && currentShownImage <=  numberOfImages) {
         if (sliderNextButton.classList.contains("disabled")) {
@@ -70,10 +95,29 @@ function DisableOrActive() {
         sliderNextButton.classList.add("disabled");
     }
 
-    // for(let li of indicatorsList.children) {
-    //     li.classList.remove("active");
-    // }
+    for(let li of indicatorsList.children) {
+        li.classList.remove("active");
+    }
 
-    // indicatorsList.children[currentShownImage-1].classList.add("active");
+    indicatorsList.children[currentShownImage-1].classList.add("active");
+}
+
+function paginationButtons() {
+
+    if(1 <= currentPage && currentPage <=  numberOfPages) {
+        if (paginationNextButton.classList.contains("disabled")) {
+            paginationNextButton.classList.remove("disabled");
+        } else if(paginationPreviousButton.classList.contains("disabled")) {
+            paginationPreviousButton.classList.remove("disabled");
+        }
+    }
+
+    if (currentPage == 1) {
+        paginationPreviousButton.classList.add("disabled");
+    } 
+    
+    if (currentPage ==  numberOfPages) {
+        paginationNextButton.classList.add("disabled");
+    }
 }
 
