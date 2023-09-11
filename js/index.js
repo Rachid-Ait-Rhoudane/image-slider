@@ -27,7 +27,7 @@ let sliderNextButton = document.querySelector(".slider-wrapper .slider-controls 
 let sliderPreviousButton = document.querySelector(".slider-wrapper .slider-controls .previous");
 
 sliderNextButton.addEventListener("click", function () {
-    if (currentShownImage <  numberOfImages) {
+    if (!this.classList.contains("disabled")) {
         currentShownImage++;
         currentShownImageIndex.innerText = `Slide #${currentShownImage}`;
         imageSliderWrapper.style.left = `-${(currentShownImage-1)*100}%`;
@@ -36,7 +36,7 @@ sliderNextButton.addEventListener("click", function () {
 });
 
 sliderPreviousButton.addEventListener("click", function () {
-    if (1 < currentShownImage) {
+    if (!this.classList.contains("disabled")) {
         currentShownImage--;
         currentShownImageIndex.innerText = `Slide #${currentShownImage}`;
         imageSliderWrapper.style.left = `-${(currentShownImage-1)*100}%`;
@@ -66,7 +66,7 @@ let numberOfPages = Math.ceil(numberOfImages / 3);
 let currentPage = 1;
 
 paginationPreviousButton.addEventListener("click", function () {
-    if (1 < currentPage) {
+    if (!this.classList.contains("disabled")) {
         currentPage--;
         indicatorsList.style.left = `-${(currentPage-1)*100}%`;
     }
@@ -81,7 +81,7 @@ paginationStartButton.addEventListener("click", function () {
 
 
 paginationNextButton.addEventListener("click", function () {
-    if (currentPage < numberOfPages) {
+    if (!this.classList.contains("disabled")) {
         currentPage++;
         indicatorsList.style.left = `-${(currentPage-1)*100}%`;
     }
