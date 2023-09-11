@@ -129,15 +129,28 @@ ul {
 }
 
 .slider-pagination .previous,
-.slider-pagination .next {
-    font-size: 32px;
+.slider-pagination .next,
+.slider-pagination .start,
+.slider-pagination .end {
     color: #00308F;
     cursor: pointer;
     user-select: none;
 }
 
+.slider-pagination .previous,
+.slider-pagination .next {
+    font-size: 32px;
+}
+
+.slider-pagination .start,
+.slider-pagination .end {
+    font-size: 25px;
+}
+
 .slider-pagination .previous.disabled,
-.slider-pagination .next.disabled {
+.slider-pagination .next.disabled,
+.slider-pagination .start.disabled,
+.slider-pagination .end.disabled {
     color: #ccc;
     cursor: no-drop;
 }
