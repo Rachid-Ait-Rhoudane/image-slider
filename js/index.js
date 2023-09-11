@@ -57,6 +57,10 @@ let paginationPreviousButton = document.querySelector(".slider-pagination .previ
 
 let paginationNextButton = document.querySelector(".slider-pagination .next");
 
+let paginationStartButton = document.querySelector(".slider-pagination .start");
+
+let paginationEndButton = document.querySelector(".slider-pagination .end");
+
 let numberOfPages = Math.ceil(numberOfImages / 3);
 
 let currentPage = 1;
@@ -69,11 +73,24 @@ paginationPreviousButton.addEventListener("click", function () {
     paginationButtons();
 });
 
+paginationStartButton.addEventListener("click", function () {
+    currentPage = 1;
+    indicatorsList.style.left = `0`;
+    paginationButtons();
+});
+
+
 paginationNextButton.addEventListener("click", function () {
     if (currentPage < numberOfPages) {
         currentPage++;
         indicatorsList.style.left = `-${(currentPage-1)*100}%`;
     }
+    paginationButtons();
+});
+
+paginationEndButton.addEventListener("click", function () {
+    currentPage = numberOfPages;
+    indicatorsList.style.left = `-${(currentPage-1)*100}%`;
     paginationButtons();
 });
 
@@ -107,17 +124,22 @@ function paginationButtons() {
     if(1 <= currentPage && currentPage <=  numberOfPages) {
         if (paginationNextButton.classList.contains("disabled")) {
             paginationNextButton.classList.remove("disabled");
+            paginationEndButton.classList.remove("disabled");
         } else if(paginationPreviousButton.classList.contains("disabled")) {
             paginationPreviousButton.classList.remove("disabled");
+            paginationStartButton.classList.remove("disabled");
         }
     }
 
     if (currentPage == 1) {
         paginationPreviousButton.classList.add("disabled");
+        paginationStartButton.classList.add("disabled");
+
     } 
     
     if (currentPage ==  numberOfPages) {
         paginationNextButton.classList.add("disabled");
+        paginationEndButton.classList.add("disabled");
     }
 }
 
