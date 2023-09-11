@@ -134,7 +134,6 @@ function paginationButtons() {
     if (currentPage == 1) {
         paginationPreviousButton.classList.add("disabled");
         paginationStartButton.classList.add("disabled");
-
     } 
     
     if (currentPage ==  numberOfPages) {
